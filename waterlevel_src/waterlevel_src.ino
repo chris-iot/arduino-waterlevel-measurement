@@ -130,12 +130,16 @@ float do_measure_kPa(){
   	}
   	delay(10);
   	delay_10ms_counter++;
-  	//TODO: Add a timeout here
+  	//Add a timeout here
+    if(delay_10ms_counter > 2000){
+      //if we didn't get a valid result within 20 seconds exit this loop
+      stop = true;
+    }
   }
   //now we know that we have reached a steady state, but the pump is still on and causing a lot of noise.
   pump_off();
   //we also need to wait a bit until the pump really is off and the noise is gone.
-  delay(100);
+  delay(200);
   //Before the level starts to fall due to leakages we quickly measure the level
   current_mV = (float)(sensor_mean_read()/1023.0)*ref_value;
   valve_open();

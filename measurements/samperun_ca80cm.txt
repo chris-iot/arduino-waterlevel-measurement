@@ -1,0 +1,61 @@
+REF internal
+Offset (0..1023):56.00
+Offset (0..1023):111.00
+Offset (0..1023):166.00
+Offset (0..1023):222.00
+Offset (0..1023):278.00
+Offset (0..1023):333.00
+Offset (0..1023):387.00
+Offset (0..1023):442.00
+Offset (0..1023):497.00
+Offset (0..1023):552.00
+Offset (mV)138.13
+Measuring...
+sensor_mean_read:76
+current (mV):190.19
+last_value_mV:0.00
+Measuring...
+sensor_mean_read:104
+current (mV):260.25
+last_value_mV:190.19
+Measuring...
+sensor_mean_read:143
+current (mV):357.85
+last_value_mV:260.25
+Measuring...
+sensor_mean_read:179
+current (mV):447.94
+last_value_mV:357.85
+Measuring...
+sensor_mean_read:216
+current (mV):540.53
+last_value_mV:447.94
+Measuring...
+sensor_mean_read:248
+current (mV):620.61
+last_value_mV:540.53
+Measuring...
+sensor_mean_read:280
+current (mV):700.68
+last_value_mV:620.61
+Measuring...
+sensor_mean_read:308
+current (mV):770.75
+last_value_mV:700.68
+Measuring...
+sensor_mean_read:337
+current (mV):843.32
+last_value_mV:770.75
+Measuring...
+sensor_mean_read:355
+current (mV):888.37
+last_value_mV:843.32
+Measuring...
+sensor_mean_read:354
+current (mV):885.87
+last_value_mV:888.37
+Done with measuring
+sensor_mean_read:349
+current_mV:873.35
+Result:8.17
+8.17

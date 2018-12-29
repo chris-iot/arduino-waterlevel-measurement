@@ -1,3 +1,10 @@
+// includes
+#include <LiquidCrystal.h>
+
+// Version string
+#define VERSION_STR "X 0.1"
+
+// pin definitions
 const int pumppin = 4;
 const int valvepin = 3;
 const int sensorpin = 0; //A0
@@ -6,9 +13,13 @@ const int lcd_rs = A2;
 const int lcd_enable = A3;
 const int lcd_d4 = A4;
 const int lcd_d5 = A5;
-const int lcd_d6 = A6;
-const int lcd_d7 = A7;
+const int lcd_d6 = 6; //D6
+const int lcd_d7 = 7; //D7
 
+// LCD object creation
+LiquidCrystal lcd(lcd_rs, lcd_enable, lcd_d4, lcd_d5, lcd_d6, lcd_d7);
+
+// reference voltage stuff
 const int REF_2V56 = 0;
 const int REF_5V  = 1;
 void switch_reference(int ref){
@@ -152,17 +163,38 @@ float do_measure_kPa(){
 
 void setup() {
   switch_reference(REF_2V56);
+  lcd.begin(16, 2);
+  lcd.setCursor(0,0);
+  lcd.print("Waterlevel Meas.");
+  lcd.setCursor(0,1);
+  lcd.print(VERSION_STR);
   Serial.begin(9600);
   pinMode(pumppin,OUTPUT);
   pump_off();
   pinMode(valvepin,OUTPUT);
   valve_open();
   delay(100); //give the serial port some time to connect
+  delay(2000); //give the user some time to look at the display
+}
+
+void update_lcd(float kPa){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Level: "); //followed by level in percent + "/" + water level in cm
+  lcd.print(kPa, 2);
+  lcd.print("kPa");
+  lcd.setCursor(0,1);
+  lcd.print("Version: ");
+  lcd.print(VERSION_STR);
+  //If a measurement is currently running the progress is indicated by displaying [|/-\] with a short delay in the last column of the 2nd row
 }
 
 void loop() {
+  float kPa = 0;
   //TODO: Add a task scheduler (e.g. https://github.com/arkhipenko/TaskScheduler) that calls do_measure_kPa if
   //requested by the user (e.g. via the OneWire Slave library https://gitea.youb.fr/youen/OneWireArduinoSlave)
-  Serial.println(do_measure_kPa());
+  kPa = do_measure_kPa();
+  update_lcd(kPa);
+  Serial.println(kPa);
   delay(1000);
 }

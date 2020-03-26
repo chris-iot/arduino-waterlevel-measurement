@@ -2,7 +2,7 @@
 #include <LiquidCrystal.h>
 
 // Version string
-#define VERSION_STR "V1.0"
+#define VERSION_STR "V1.1"
 
 // pin definitions
 const int pumppin = 4;
@@ -275,7 +275,7 @@ void update_lcd(float heigth, int hours_since_last_update, bool meas_ongoing){
     lcd.print(VERSION_STR);
     lcd.setCursor(0,1);
     lcd.print("last meas.:");
-    if(hours_since_last_update > 999){
+    if(hours_since_last_update > 99){
       hours_since_last_update = 99;
       lcd.print(">");
     }else{
